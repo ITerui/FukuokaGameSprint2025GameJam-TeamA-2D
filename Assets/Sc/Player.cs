@@ -40,12 +40,13 @@ public class Player : MonoBehaviour
     {
         if (evolutionGauge >= maxEvolution)
         {
+            int a = 0;
             // 進化処理
             evolutionGauge = 0;
             hp += 3;          // 回復量（調整可）
             if (hp > maxHp) hp = maxHp;
-
-            attackPower += 2; // 攻撃力アップ
+            attackPower += 2 +a; // 攻撃力アップ
+            a += 1;
 
             UpdateBar();
             UpdateUIBar();
