@@ -9,12 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Fujihara/Scene/Test TitleScene.unity
+    path: Assets/Scenes/FujiharaScene/Test TitleScene.unity
     guid: b224f883cdeb0ec409de42b123cb3cd9
   - enabled: 1
-    path: Assets/Fujihara/Scene/Test GameScene.unity
+    path: Assets/Scenes/FujiharaScene/Test GameScene.unity
     guid: 1336bc62efec44441bf442296e768b75
   - enabled: 1
-    path: Assets/Fujihara/Scene/ResultScene.unity
+    path: Assets/Scenes/FujiharaScene/ResultScene.unity
     guid: e111a025797319a4d8a938e3b55a8733
   m_configObjects: {}
