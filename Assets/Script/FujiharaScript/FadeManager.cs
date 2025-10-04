@@ -19,6 +19,12 @@ public class FadeManager : MonoBehaviour
 
     public void FadeToScene(string sceneName)
     {
+        if (fadeImage == null)
+        {
+            Debug.LogError("fadeImage is null!");
+            return;
+        }
+
         StartCoroutine(FadeOutAndLoadScene(sceneName));
     }
 
