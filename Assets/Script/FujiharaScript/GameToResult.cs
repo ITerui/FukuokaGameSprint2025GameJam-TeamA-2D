@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class GameToResult : MonoBehaviour
 {
+    [SerializeField] private FadeManager fadeManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,9 +16,9 @@ public class GameToResult : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Return))
         {
-            SceneManager.LoadScene("ResultScene");
+            fadeManager.FadeToScene("ResultScene");
         }
     }
 }
