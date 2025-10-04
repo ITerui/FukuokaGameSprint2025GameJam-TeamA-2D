@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cat : MonoBehaviour
+public class Dog : MonoBehaviour
 {
     [SerializeField] private GameObject cat;
     public static int Damage;
@@ -10,17 +10,17 @@ public class Cat : MonoBehaviour
     public static bool LevelUp1;
     // Start is called before the first frame update
 
-    public enum CatEvo
+    public enum DogEvo
     {
-        CatNone,
-        CatOneEvo,
-        CatTwoEvo,
-        CatFinEvo,
+        DogNone,
+        DogOneEvo,
+        DogTwoEvo,
+        DogFinEvo,
     }
 
-    static public CatEvo beforeEvo = CatEvo.CatNone;
+    static public DogEvo beforeEvo = DogEvo.DogNone;
 
-    static public CatEvo nowCatEvo = CatEvo.CatNone;
+    static public DogEvo nowCatEvo = DogEvo.DogNone;
 
     void Start()
     {
@@ -30,7 +30,7 @@ public class Cat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(nowCatEvo !=beforeEvo)
+        if (nowCatEvo != beforeEvo)
         {
             EvoLevel += 1;
         }
@@ -39,13 +39,13 @@ public class Cat : MonoBehaviour
 
     public void DamageUp()
     {
-        Damage= 1+ EvoLevel;
+        Damage = 1 + EvoLevel;
     }
     public void Evo()
     {
-        if (nowCatEvo < CatEvo.CatFinEvo)
+        if (nowCatEvo < DogEvo.DogFinEvo)
         {
-            nowCatEvo = (CatEvo)((int)nowCatEvo + 1);
+            nowCatEvo = (DogEvo)((int)nowCatEvo + 1);
         }
         else
         {
