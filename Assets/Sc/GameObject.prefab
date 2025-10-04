@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 5220006001812490464}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.15680344, y: 1.4720918, z: 2370.4604}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -52,3 +52,5 @@ MonoBehaviour:
   attackPower: 1
   evolutionGauge: 0
   maxEvolution: 10
+  hpBarImage: {fileID: 0}
+  evolutionBarImage: {fileID: 0}
