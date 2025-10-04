@@ -6,70 +6,73 @@ public class Player : MonoBehaviour
     public int playerID; // 1 or 2
 
     [Header("キー設定")]
-    public KeyCode attackKey;    // 攻撃用キー
-    public KeyCode evolutionKey; // 進化用キー
+    public KeyCode attackKey;    // 攻撃キー
+    public KeyCode evolutionKey; // 進化キー
+    public KeyCode foulKey;      // フライングキー
 
     [Header("ステータス")]
+    public int hp = 10;
+    public int maxHp = 10;
+    public int attackPower = 1;
+    public int evolutionGauge = 0;
+    public int maxEvolution = 5;
+    public int evolutionLevel = 0;
 
-    public int hp = 10;          // 体力
-    public int maxHp;
-    public int attackPower = 1;  // 攻撃力
-    public int evolutionGauge = 0; // 進化ゲージ
-    public int maxEvolution;  // ゲージの最大値（調整可）
-    
     [Header("UI")]
     public Image hpBarImage;
     public Image evolutionBarImage;
 
+    private void Start()
+    {
+        UpdateBars();
+    }
+
+    // 通常ダメージ（ゲージ増加あり）
     public void TakeDamage(int damage)
     {
         hp -= damage;
-
-        // ダメージ量に応じて進化ゲージを加算
         evolutionGauge += damage;
-        Debug.Log($"[DEBUG] HP更新: {hp}/{maxHp}");
         if (evolutionGauge > maxEvolution) evolutionGauge = maxEvolution;
-
-        UpdateBar();
-
-        Debug.Log($"Player{playerID} が {damage} ダメージを受けた！ HP: {hp}, 進化ゲージ: {evolutionGauge}/{maxEvolution}");
+        UpdateBars();
+        Debug.Log($"Player{playerID} ダメージ: {damage} HP: {hp}/{maxHp} ゲージ: {evolutionGauge}/{maxEvolution}");
     }
 
+    // フライングダメージ（ゲージは増えない）
+    public void TakeDamage_NoGauge(int damage)
+    {
+        hp -= damage;
+        UpdateBars();
+        Debug.Log($"Player{playerID} フライングペナルティ: {damage} ダメージ HP: {hp}/{maxHp}");
+    }
+
+    // 進化処理
     public void Evolve()
     {
         if (evolutionGauge >= maxEvolution)
         {
-            // 進化処理
             evolutionGauge = 0;
-            hp += 3;          // 回復量（調整可）
-            if (hp > maxHp) hp = maxHp;
+            evolutionLevel++;
+            maxHp += 2;
+            hp = maxHp;
+            attackPower += 1;
 
-            attackPower += 1; // 攻撃力アップ
+            UpdateBars();
+            Debug.Log($"Player{playerID} 進化! HP: {hp}/{maxHp}, 攻撃力: {attackPower}, 進化Lv: {evolutionLevel}");
 
-            UpdateBar();
-            UpdateUIBar();
-
-            Debug.Log($"Player{playerID} が進化！ HP: {hp}, 攻撃力: {attackPower}");
+            // GameManager に通知
+            GameManager gm = FindObjectOfType<GameManager>();
+            if (gm != null)
+                gm.OnPlayerEvolve(this);
         }
         else
         {
-            Debug.Log($"Player{playerID} は進化できない（ゲージ {evolutionGauge}/{maxEvolution}）");
+            Debug.Log($"Player{playerID} は進化できない ゲージ: {evolutionGauge}/{maxEvolution}");
         }
     }
 
-    private void UpdateBar()
+    private void UpdateBars()
     {
-
-        if (hpBarImage !=null)
-        {
-            hpBarImage.fillAmount = (float)hp / maxHp;
-        }
-    }
-    private void UpdateUIBar()
-    {
-        if (evolutionBarImage != null)
-        {
-            evolutionBarImage.fillAmount = (float)evolutionGauge / maxHp;
-        }
+        if (hpBarImage != null) hpBarImage.fillAmount = (float)hp / maxHp;
+        if (evolutionBarImage != null) evolutionBarImage.fillAmount = (float)evolutionGauge / maxEvolution;
     }
 }
