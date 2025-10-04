@@ -12,15 +12,22 @@ public class Player : MonoBehaviour
 
     [Header("ステータス")]
 
+    public int maxHp = 10;
     public int hp = 10;          // 体力
-    public int maxHp;
     public int attackPower = 2;  // 攻撃力
     public int evolutionGauge = 0; // 進化ゲージ
     public int maxEvolution;  // ゲージの最大値（調整可）
-    
+
     [Header("UI")]
-    public Image hpBarImage;
+    public HPBar HpBar; // 本当はここで設定するの良くない。キャラ増やしたりしたときに困る。拡張性がない。
     public Image evolutionBarImage;
+    public void Start()
+    {
+        if(HpBar != null)
+        {
+            HpBar.Setup(maxHp, maxHp);
+        }
+    }
 
     public void TakeDamage(int damage)
     {
@@ -61,10 +68,9 @@ public class Player : MonoBehaviour
 
     private void UpdateBar()
     {
-
-        if (hpBarImage !=null)
+        if(HpBar != null)
         {
-            hpBarImage.fillAmount = (float)hp / maxHp;
+            HpBar.SetHP(hp);
         }
     }
     private void UpdateUIBar()
