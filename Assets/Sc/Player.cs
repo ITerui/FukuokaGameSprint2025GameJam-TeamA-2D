@@ -69,7 +69,7 @@ public class Player : MonoBehaviour
     {
         if (evolutionBarImage != null)
         {
-            evolutionBarImage.fillAmount = (float)evolutionGauge / maxHp;
+            evolutionBarImage.fillAmount = maxEvolution / (float)evolutionGauge;
         }
     }
 }
