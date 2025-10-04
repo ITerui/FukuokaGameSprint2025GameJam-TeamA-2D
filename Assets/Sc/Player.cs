@@ -22,6 +22,10 @@ public class Player : MonoBehaviour
     public Image hpBarImage;
     public Image evolutionBarImage;
 
+    [Header("進化用UIイメージ")]
+    public Image characterImage;         // 変更対象のImage
+    public Sprite[] evolutionSprites;    // 進化段階の画像配列
+
     private void Start()
     {
         UpdateBars();
@@ -57,16 +61,23 @@ public class Player : MonoBehaviour
             attackPower += 1;
 
             UpdateBars();
+
+            // --- 画像を切り替える ---
+            if (characterImage != null && evolutionSprites.Length > 0)
+            {
+                int index = Mathf.Clamp(evolutionLevel, 0, evolutionSprites.Length - 1);
+                characterImage.sprite = evolutionSprites[index];
+
+                // --- 大きさと位置を変更 ---
+                RectTransform rt = characterImage.rectTransform;
+                rt.localScale = Vector3.one * (1 + 0.2f * evolutionLevel); // 段階的に拡大
+                rt.anchoredPosition = new Vector2(0, 10 * evolutionLevel);  // 段階的に少し上に移動
+            }
+
             Debug.Log($"Player{playerID} 進化! HP: {hp}/{maxHp}, 攻撃力: {attackPower}, 進化Lv: {evolutionLevel}");
 
-            // GameManager に通知
             GameManager gm = FindObjectOfType<GameManager>();
-            if (gm != null)
-                gm.OnPlayerEvolve(this);
-        }
-        else
-        {
-            Debug.Log($"Player{playerID} は進化できない ゲージ: {evolutionGauge}/{maxEvolution}");
+            if (gm != null) gm.OnPlayerEvolve(this);
         }
     }
 
