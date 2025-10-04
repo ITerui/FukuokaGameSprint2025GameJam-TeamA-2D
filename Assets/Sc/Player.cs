@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,7 +14,7 @@ public class Player : MonoBehaviour
 
     public int hp = 10;          // 体力
     public int maxHp;
-    public int attackPower = 1;  // 攻撃力
+    public int attackPower = 2;  // 攻撃力
     public int evolutionGauge = 0; // 進化ゲージ
     public int maxEvolution;  // ゲージの最大値（調整可）
     
@@ -44,7 +45,7 @@ public class Player : MonoBehaviour
             hp += 3;          // 回復量（調整可）
             if (hp > maxHp) hp = maxHp;
 
-            attackPower += 1; // 攻撃力アップ
+            attackPower += 2; // 攻撃力アップ
 
             UpdateBar();
             UpdateUIBar();
@@ -69,7 +70,12 @@ public class Player : MonoBehaviour
     {
         if (evolutionBarImage != null)
         {
-            evolutionBarImage.fillAmount = (float)hp / maxHp;
+            evolutionBarImage.fillAmount = (float)evolutionGauge/maxEvolution ;
         }
+    }
+
+    internal void TakeDamage_NoGauge(int foulDamage)
+    {
+
     }
 }
