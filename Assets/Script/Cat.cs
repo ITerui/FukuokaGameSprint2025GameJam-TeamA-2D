@@ -18,6 +18,10 @@ public class Cat : MonoBehaviour
         FinEvo,
     }
 
+    static public CatEvo beforeEvo = CatEvo.None;
+
+    static public CatEvo nowCatEvo = CatEvo.None;
+
     void Start()
     {
         EvoLevel = 0;
@@ -26,16 +30,27 @@ public class Cat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(LevelUp1)
+        if(nowCatEvo !=beforeEvo)
         {
             EvoLevel += 1;
-            //cat.SetActive(false);
         }
+        beforeEvo = nowCatEvo;
     }
 
     public void DamageUp()
     {
         Damage= 1+ EvoLevel;
-        HPBar HitDamage();
+        HPBar.HitDamage();
+    }
+    public void Evo()
+    {
+        if (nowCatEvo < CatEvo.FinEvo)
+        {
+            nowCatEvo = (CatEvo)((int)nowCatEvo + 1);
+        }
+        else
+        {
+            //LoseBom();
+        }
     }
 }

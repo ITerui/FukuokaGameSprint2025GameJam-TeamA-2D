@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class HPBar : MonoBehaviour
 {
-    public static int HP;
+    public static float MaxHP;
+    private float nowHp;
     // Start is called before the first frame update
     void Start()
     {
-        HP = 10;
+        nowHp = MaxHP;
+        MaxHP = 10;
+        
     }
 
     // Update is called once per frame
