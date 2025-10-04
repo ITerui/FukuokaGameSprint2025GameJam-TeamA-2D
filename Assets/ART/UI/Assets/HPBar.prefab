@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 2547468810553026008}
   - component: {fileID: 5277718018508776733}
   - component: {fileID: 3829644897167039079}
-  - component: {fileID: -266128014146368824}
+  - component: {fileID: 3546607465811626723}
   m_Layer: 5
-  m_Name: HP_Bar
+  m_Name: HPBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -105,7 +105,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &-266128014146368824
+--- !u!114 &3546607465811626723
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -114,16 +114,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 721694557268742683}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca3f6489a6994b047a7db0c09e41ebc3, type: 3}
+  m_Script: {fileID: 11500000, guid: c3b485a08ac1c6d43bd8cea7fd1f9551, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BackgroundImage: {fileID: 3196481413793652312}
-  HpImage: {fileID: 1584114757486663515}
-  DamageImage: {fileID: 9023772725909762077}
+  BarGaugeImage: {fileID: 1584114757486663515}
+  MaxValue: 100
+  CurrentValue: 100
+  DamageBarGaugeImage: {fileID: 9023772725909762077}
   DelayDamageLerpTime: 1
   DamageLerpTime: 1.5
-  MaxHP: 100
-  CurrentHP: 100
 --- !u!1 &792526115639736763
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,13 +19,19 @@ public class Player : MonoBehaviour
     public int maxEvolution;  // ゲージの最大値（調整可）
 
     [Header("UI")]
-    public HPBar HpBar; // 本当はここで設定するの良くない。キャラ増やしたりしたときに困る。拡張性がない。
-    public Image evolutionBarImage;
+    [SerializeField] private BarGauge HpBar = null; // 本当はここで設定するの良くない。キャラ増やしたりしたときに困る。拡張性がない。
+    [SerializeField] private BarGauge EvolutionBar = null; // 本当はここで設定するの良くない。キャラ増やしたりしたときに困る。拡張性がない。
+
     public void Start()
     {
         if(HpBar != null)
         {
             HpBar.Setup(maxHp, maxHp);
+        }
+
+        if(EvolutionBar != null)
+        {
+            EvolutionBar.Setup(maxEvolution, 0);
         }
     }
 
@@ -70,14 +76,14 @@ public class Player : MonoBehaviour
     {
         if(HpBar != null)
         {
-            HpBar.SetHP(hp);
+            HpBar.SetValue(hp);
         }
     }
     private void UpdateUIBar()
     {
-        if (evolutionBarImage != null)
+        if (EvolutionBar != null)
         {
-            evolutionBarImage.fillAmount = (float)evolutionGauge/maxEvolution ;
+            EvolutionBar.SetValue(evolutionGauge);
         }
     }
 
