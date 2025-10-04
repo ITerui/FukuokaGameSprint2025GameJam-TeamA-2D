@@ -16,7 +16,7 @@ public class TitleToGame : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            SceneManager.LoadScene("GameScene");
+            SceneManager.LoadScene("Test GameScene");
         }
     }
 }
