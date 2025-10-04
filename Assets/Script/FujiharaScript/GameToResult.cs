@@ -16,9 +16,47 @@ public class GameToResult : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            fadeManager.FadeToScene("ResultScene");
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                fadeManager.FadeToScene("ResultScene1");
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                fadeManager.FadeToScene("ResultScene2");
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                fadeManager.FadeToScene("ResultScene3");
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                fadeManager.FadeToScene("ResultScene4");
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                fadeManager.FadeToScene("ResultScene5");
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                fadeManager.FadeToScene("ResultScene6");
+            }
         }
     }
 }
