@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ResultManager : MonoBehaviour
 {
     [SerializeField] private Button[] buttons;
     [SerializeField] int selectedIndex;
+    [SerializeField] private FadeManager fadeManager;
 
     private Color unselectedColor = new Color(0.3f, 0.3f, 0.3f); // à√ÇﬂÇÃÉOÉåÅ[
     private Color defaultNormalColor;
@@ -36,7 +38,7 @@ public class ResultManager : MonoBehaviour
             UpdateButtonColors();
             SelectButton(selectedIndex);
         }
-        else if (Input.GetKeyDown(KeyCode.Space))
+        else if (Input.GetKeyDown(KeyCode.Return))
         {
             buttons[selectedIndex].onClick.Invoke();
         }
@@ -64,5 +66,15 @@ public class ResultManager : MonoBehaviour
 
             buttons[i].colors = colors;
         }
+    }
+
+    public void ReStartGame()
+    {
+        fadeManager.FadeToScene("Test GameScene");
+    }
+
+    public void GoTitle()
+    {
+        fadeManager.FadeToScene("Test TitleScene");
     }
 }
