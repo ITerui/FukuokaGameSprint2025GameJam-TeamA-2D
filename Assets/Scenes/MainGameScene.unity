@@ -1164,7 +1164,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1192154540
 Transform:
   m_ObjectHideFlags: 0
@@ -1337,7 +1337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0c7f3dea46507647952f64afcd0c915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerID: 0
+  playerID: 2
   attackKey: 303
   evolutionKey: 112
   maxHp: 10
@@ -1629,7 +1629,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0c7f3dea46507647952f64afcd0c915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerID: 0
+  playerID: 1
   attackKey: 304
   evolutionKey: 113
   maxHp: 10
@@ -1780,6 +1780,7 @@ MonoBehaviour:
   resultScene_P2Win: 
   resultScene_P1OverEvolution: 
   resultScene_P2OverEvolution: 
+  bgmClip: {fileID: 8300000, guid: cbac8213e1918c4428d829caaf1078db, type: 3}
 --- !u!4 &1836486280
 Transform:
   m_ObjectHideFlags: 0
