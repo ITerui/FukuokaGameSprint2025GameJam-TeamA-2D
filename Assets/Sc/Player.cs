@@ -17,7 +17,8 @@ public class Player : MonoBehaviour
     public int attackPower = 2;  // 攻撃力
     public int evolutionGauge = 0; // 進化ゲージ
     public int maxEvolution;  // ゲージの最大値（調整可）
-    
+    private bool Apr = false;
+
     [Header("UI")]
     public Image hpBarImage;
     public Image evolutionBarImage;
@@ -32,6 +33,7 @@ public class Player : MonoBehaviour
         if (evolutionGauge > maxEvolution) evolutionGauge = maxEvolution;
 
         UpdateBar();
+        UpdateUIBar();
 
         Debug.Log($"Player{playerID} が {damage} ダメージを受けた！ HP: {hp}, 進化ゲージ: {evolutionGauge}/{maxEvolution}");
     }
@@ -45,8 +47,14 @@ public class Player : MonoBehaviour
             evolutionGauge = 0;
             hp += 3;          // 回復量（調整可）
             if (hp > maxHp) hp = maxHp;
+            if (Apr==true)
+            {
+                a -= 1;
+            }
             attackPower += 2 +a; // 攻撃力アップ
-            a += 1;
+            a += 2;
+            Apr = true;
+
 
             UpdateBar();
             UpdateUIBar();
