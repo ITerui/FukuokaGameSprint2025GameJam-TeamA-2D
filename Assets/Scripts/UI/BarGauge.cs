@@ -25,7 +25,7 @@ public class BarGauge : MonoBehaviour
         CurrentValue = Mathf.Clamp(CurrentValue, 0f, MaxValue);
         UpdateBarGauge();
 
-        StartDamageCoroutine();
+        //StartDamageCoroutine();
     }
 
     public void Setup(float InMaxValue, float InCurrentValue)
