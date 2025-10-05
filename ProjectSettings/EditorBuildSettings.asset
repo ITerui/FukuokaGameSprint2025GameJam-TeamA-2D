@@ -17,19 +17,22 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FujiharaScene/ResultScene.unity
     guid: e111a025797319a4d8a938e3b55a8733
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/FujiharaScene/ResultScene2.unity
     guid: 8f3f5f51dc3a49549800b9e2f92316cb
   - enabled: 1
+    path: Assets/A-WATANABE/Scene/GameScene.unity
+    guid: 382839763e14d0e46b46ddd1aecc1716
+  - enabled: 0
     path: Assets/Scenes/FujiharaScene/ResultScene3.unity
     guid: 14911197775c48240a6185cebe55e4c8
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/FujiharaScene/ResultScene4.unity
     guid: 084df61fb8d9e894083d7a05e1783fe5
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/FujiharaScene/ResultScene5.unity
     guid: 477438c131653fc4d8529b16fc8d76d8
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/FujiharaScene/ResultScene6.unity
     guid: 485d8cbf46ddd4a4f9cb34499d1e646a
   m_configObjects: {}
