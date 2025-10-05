@@ -16,21 +16,20 @@ public class Player : MonoBehaviour
     public int hp = 10;          // �̗�
     public int attackPower = 2;  // �U����
     public int evolutionGauge = 0; // �i���Q�[�W
-    public int maxEvolution;  // �Q�[�W�̍ő�l�
-    private bool Apr = false;
-　
+    public int maxEvolution;  // �Q�[�W�̍ő�l�i�����j
+
     [Header("UI")]
-    public Image hpBarImage;
-    public Image evolutionBarImage;
-    
+    [SerializeField] private BarGauge HpBar = null; // �{���͂����Őݒ肷��̗ǂ��Ȃ��B�L�������₵���肵���Ƃ��ɍ���B�g�������Ȃ��B
+    [SerializeField] private BarGauge EvolutionBar = null; // �{���͂����Őݒ肷��̗ǂ��Ȃ��B�L�������₵���肵���Ƃ��ɍ���B�g�������Ȃ��B
+
     public void Start()
     {
-        if(HpBar != null)
+        if (HpBar != null)
         {
             HpBar.Setup(maxHp, maxHp);
         }
 
-        if(EvolutionBar != null)
+        if (EvolutionBar != null)
         {
             EvolutionBar.Setup(maxEvolution, 0);
         }
@@ -46,7 +45,6 @@ public class Player : MonoBehaviour
         if (evolutionGauge > maxEvolution) evolutionGauge = maxEvolution;
 
         UpdateBar();
-        UpdateUIBar();
 
         Debug.Log($"Player{playerID} �� {damage} �_���[�W��󂯂��I HP: {hp}, �i���Q�[�W: {evolutionGauge}/{maxEvolution}");
     }
@@ -60,14 +58,8 @@ public class Player : MonoBehaviour
             evolutionGauge = 0;
             hp += 3;          // �񕜗ʁi�����j
             if (hp > maxHp) hp = maxHp;
-            if (Apr==true)
-            {
-                a -= 1;
-            }
-            attackPower += 2 +a；
-            a += 2;
-            Apr = true;
-
+            attackPower += 2 + a; // �U���̓A�b�v
+            a += 1;
 
             UpdateBar();
             UpdateUIBar();
@@ -82,16 +74,16 @@ public class Player : MonoBehaviour
 
     private void UpdateBar()
     {
-        if(hpBarImage != null)
+        if (HpBar != null)
         {
-            hpBarImage.fillAmount = (float)hp / maxHp;
+            HpBar.SetValue(hp);
         }
-    ｝
+    }
     private void UpdateUIBar()
     {
         if (EvolutionBar != null)
         {
-            evolutionBar.Image.fillAmount = (float)evolutionGauge/maxEvolution;
+            EvolutionBar.SetValue(evolutionGauge);
         }
     }
 
