@@ -28,15 +28,26 @@ public class GameManager : MonoBehaviour
     public string resultScene_P1OverEvolution;
     public string resultScene_P2OverEvolution;
 
+    [Header("BGM")]
+    public AudioClip bgmClip;
+
     public float ReturnIdleTime = 30.0f;
 
     private bool roundActive = false;
     private bool waitingForInput = false;
 
+
+    private AudioSource audioSource;
+
     void Start()
     {
         if (markImage != null) markImage.gameObject.SetActive(false);
         StartNextRound();
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.clip = bgmClip;
+        audioSource.loop = true;
+        audioSource.volume = 0.2f;
+        audioSource.Play();
     }
 
     void Update()
