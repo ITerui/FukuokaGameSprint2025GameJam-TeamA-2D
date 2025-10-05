@@ -6,36 +6,49 @@ public class Player : MonoBehaviour
 {
     public int playerID; // 1 or 2
 
-    [Header("ƒL[İ’è")]
-    public KeyCode attackKey;    // UŒ‚—pƒL[
-    public KeyCode evolutionKey; // i‰»—pƒL[
+    [Header("ï¿½Lï¿½[ï¿½İ’ï¿½")]
+    public KeyCode attackKey;    // ï¿½Uï¿½ï¿½ï¿½pï¿½Lï¿½[
+    public KeyCode evolutionKey; // ï¿½iï¿½ï¿½ï¿½pï¿½Lï¿½[
 
-    [Header("ƒXƒe[ƒ^ƒX")]
+    [Header("ï¿½Xï¿½eï¿½[ï¿½^ï¿½X")]
 
-    public int hp = 10;          // ‘Ì—Í
-    public int maxHp;
-    public int attackPower = 2;  // UŒ‚—Í
-    public int evolutionGauge = 0; // i‰»ƒQ[ƒW
-    public int maxEvolution;  // ƒQ[ƒW‚ÌÅ‘å’li’²®‰Âj
+    public int maxHp = 10;
+    public int hp = 10;          // ï¿½Ì—ï¿½
+    public int attackPower = 2;  // ï¿½Uï¿½ï¿½ï¿½ï¿½
+    public int evolutionGauge = 0; // ï¿½iï¿½ï¿½ï¿½Qï¿½[ï¿½W
+    public int maxEvolution;  // ï¿½Qï¿½[ï¿½Wï¿½ÌÅ‘ï¿½lï¿½
     private bool Apr = false;
-
+ã€€
     [Header("UI")]
     public Image hpBarImage;
     public Image evolutionBarImage;
+    
+    public void Start()
+    {
+        if(HpBar != null)
+        {
+            HpBar.Setup(maxHp, maxHp);
+        }
+
+        if(EvolutionBar != null)
+        {
+            EvolutionBar.Setup(maxEvolution, 0);
+        }
+    }
 
     public void TakeDamage(int damage)
     {
         hp -= damage;
 
-        // ƒ_ƒ[ƒW—Ê‚É‰‚¶‚Äi‰»ƒQ[ƒW‚ğ‰ÁZ
+        // ï¿½_ï¿½ï¿½ï¿½[ï¿½Wï¿½Ê‚É‰ï¿½ï¿½ï¿½ï¿½Äiï¿½ï¿½ï¿½Qï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½Z
         evolutionGauge += damage;
-        Debug.Log($"[DEBUG] HPXV: {hp}/{maxHp}");
+        Debug.Log($"[DEBUG] HPï¿½Xï¿½V: {hp}/{maxHp}");
         if (evolutionGauge > maxEvolution) evolutionGauge = maxEvolution;
 
         UpdateBar();
         UpdateUIBar();
 
-        Debug.Log($"Player{playerID} ‚ª {damage} ƒ_ƒ[ƒW‚ğó‚¯‚½I HP: {hp}, i‰»ƒQ[ƒW: {evolutionGauge}/{maxEvolution}");
+        Debug.Log($"Player{playerID} ï¿½ï¿½ {damage} ï¿½_ï¿½ï¿½ï¿½[ï¿½Wï¿½ï¿½ó‚¯‚ï¿½ï¿½I HP: {hp}, ï¿½iï¿½ï¿½ï¿½Qï¿½[ï¿½W: {evolutionGauge}/{maxEvolution}");
     }
 
     public void Evolve()
@@ -43,15 +56,15 @@ public class Player : MonoBehaviour
         if (evolutionGauge >= maxEvolution)
         {
             int a = 0;
-            // i‰»ˆ—
+            // ï¿½iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             evolutionGauge = 0;
-            hp += 3;          // ‰ñ•œ—Êi’²®‰Âj
+            hp += 3;          // ï¿½ñ•œ—Êiï¿½ï¿½ï¿½ï¿½ï¿½Âj
             if (hp > maxHp) hp = maxHp;
             if (Apr==true)
             {
                 a -= 1;
             }
-            attackPower += 2 +a; // UŒ‚—ÍƒAƒbƒv
+            attackPower += 2 +aï¼›
             a += 2;
             Apr = true;
 
@@ -59,27 +72,26 @@ public class Player : MonoBehaviour
             UpdateBar();
             UpdateUIBar();
 
-            Debug.Log($"Player{playerID} ‚ªi‰»I HP: {hp}, UŒ‚—Í: {attackPower}");
+            Debug.Log($"Player{playerID} ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½I HP: {hp}, ï¿½Uï¿½ï¿½ï¿½ï¿½: {attackPower}");
         }
         else
         {
-            Debug.Log($"Player{playerID} ‚Íi‰»‚Å‚«‚È‚¢iƒQ[ƒW {evolutionGauge}/{maxEvolution}j");
+            Debug.Log($"Player{playerID} ï¿½Íiï¿½ï¿½ï¿½Å‚ï¿½ï¿½È‚ï¿½ï¿½iï¿½Qï¿½[ï¿½W {evolutionGauge}/{maxEvolution}ï¿½j");
         }
     }
 
     private void UpdateBar()
     {
-
-        if (hpBarImage !=null)
+        if(hpBarImage != null)
         {
             hpBarImage.fillAmount = (float)hp / maxHp;
         }
-    }
+    ï½
     private void UpdateUIBar()
     {
-        if (evolutionBarImage != null)
+        if (EvolutionBar != null)
         {
-            evolutionBarImage.fillAmount = (float)evolutionGauge/maxEvolution ;
+            evolutionBar.Image.fillAmount = (float)evolutionGauge/maxEvolution;
         }
     }
 
