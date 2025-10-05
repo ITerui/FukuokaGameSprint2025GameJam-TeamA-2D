@@ -30,14 +30,14 @@ public class PerformanceManager : MonoBehaviour
         distance = inDistance;
         AttackPerformancePannel.SetActive(true);
         flag = true;
-        HUD.gameObject.SetActive(false);
+        //HUD.gameObject.SetActive(false);
         StartCoroutine(MoveForward());
     }
 
     public void EndAttackPerformance()
     {
         AttackPerformancePannel.SetActive(false);
-        HUD.gameObject.SetActive(true);
+        //HUD.gameObject.SetActive(true);
         StopCoroutine(MoveForward());
         p1Trans.position = SaveLoc1;
         p2Trans.position = SaveLoc2;
