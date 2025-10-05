@@ -9,6 +9,8 @@ public class BarGauge : MonoBehaviour
     public Image BarGaugeImage = null;
     [SerializeField] private float MaxValue = 100f;
     [SerializeField] private float CurrentValue = 100f;
+    [SerializeField] private GameObject DekasinkaEf;
+
 
     [Header("BarGauge Settings for HP")]
     public Image DamageBarGaugeImage = null;
@@ -16,6 +18,7 @@ public class BarGauge : MonoBehaviour
     public float DamageLerpTime = 1.5f;
 
     private Coroutine DamageCoroutine = null;
+    private bool isEffectRunning;
 
     private void OnValidate()
     {
@@ -26,6 +29,37 @@ public class BarGauge : MonoBehaviour
         UpdateBarGauge();
 
         //StartDamageCoroutine();
+    }
+
+    public void Start()
+    {
+        DekasinkaEf.SetActive(false);
+    }
+    public void Update()
+    {
+        if (!isEffectRunning && CurrentValue == MaxValue)
+        {
+            StartCoroutine(DekaEf());
+        }
+    }
+
+    
+   IEnumerator DekaEf()
+    {
+        if(CurrentValue==MaxValue)
+        {
+            isEffectRunning = true;
+
+            for (int i = 0; i < 5; i++)
+            {
+                DekasinkaEf.SetActive(true);
+                yield return new WaitForSeconds(0.5f);
+                DekasinkaEf.SetActive(false);
+                yield return new WaitForSeconds(0.5f);
+            }
+
+            isEffectRunning = false;
+        }
     }
 
     public void Setup(float InMaxValue, float InCurrentValue)
