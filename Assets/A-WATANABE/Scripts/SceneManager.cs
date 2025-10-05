@@ -7,8 +7,6 @@ using UnityEngine.UI;
 
 public class Buttontest: MonoBehaviour
 {
-    [SerializeField] private Button[] buttons;
-    [SerializeField] int selectedIndex;
     [SerializeField] private Fademanager fadeManager;
 
     // Start is called before the first frame update
@@ -21,7 +19,7 @@ public class Buttontest: MonoBehaviour
     {
         SeManager seManager = SeManager.Instance;
         seManager.SettingPlaySE();
-        fadeManager.FadeToScene("GameScene");
+        fadeManager.FadeToScene("MainGameScene");
     }
 }
 
