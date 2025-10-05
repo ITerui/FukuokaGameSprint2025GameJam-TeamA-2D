@@ -192,7 +192,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u30BF\u30A4\u30C8\u30EB\u306B\u623B\u308B"
+  m_Text: 
 --- !u!222 &125094799
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -385,7 +385,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &804433731
 RectTransform:
   m_ObjectHideFlags: 0
@@ -585,8 +585,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -150, y: -175}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -175, y: -130}
+  m_SizeDelta: {x: 200, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &987351009
 MonoBehaviour:
@@ -781,11 +781,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonImageSets:
   - button: {fileID: 987351009}
-    selectedSprite: {fileID: 0}
-    unselectedSprite: {fileID: 0}
+    selectedSprite: {fileID: 21300000, guid: 2614996317d098046ae182d0a8641e83, type: 3}
+    unselectedSprite: {fileID: 21300000, guid: 3025a51b0cf7c5e4dad964467ae4d81f, type: 3}
   - button: {fileID: 1759737685}
-    selectedSprite: {fileID: 0}
-    unselectedSprite: {fileID: 0}
+    selectedSprite: {fileID: 21300000, guid: 1b4f12f7642d5d843acb5120a50f413a, type: 3}
+    unselectedSprite: {fileID: 21300000, guid: 81e0aefa81ee91946a5cdaa8e23c4ed1, type: 3}
   fadeManager: {fileID: 1999398643}
   dogImage: {fileID: 1437439066}
   catImage: {fileID: 511874462}
@@ -931,8 +931,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 150, y: -175}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 175, y: -130}
+  m_SizeDelta: {x: 200, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1759737685
 MonoBehaviour:
@@ -1098,7 +1098,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u30EA\u30B9\u30BF\u30FC\u30C8"
+  m_Text: 
 --- !u!222 &1981568023
 CanvasRenderer:
   m_ObjectHideFlags: 0
