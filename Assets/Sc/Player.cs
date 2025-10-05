@@ -46,7 +46,6 @@ public class Player : MonoBehaviour
         if (evolutionGauge > maxEvolution) evolutionGauge = maxEvolution;
 
         UpdateBar();
-        UpdateUIBar();
 
         Debug.Log($"Player{playerID} �� {damage} �_���[�W��󂯂��I HP: {hp}, �i���Q�[�W: {evolutionGauge}/{maxEvolution}");
     }
