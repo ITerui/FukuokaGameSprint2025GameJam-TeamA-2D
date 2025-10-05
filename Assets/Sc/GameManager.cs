@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        AttackPerforamanceManager.InitLoc();
         if (markImage != null) markImage.gameObject.SetActive(false);
         StartNextRound();
         audioSource = gameObject.AddComponent<AudioSource>();

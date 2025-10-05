@@ -1317,11 +1317,11 @@ MonoBehaviour:
   evolutionKey: 107
   maxHp: 100
   hp: 100
-  addEvoHp: 10
+  addEvoHp: 50
   attackPower: 10
-  addEvoattackPower: 2
+  addEvoattackPower: 5
   evolutionGauge: 0
-  maxEvolutionGauge: 5
+  maxEvolutionGauge: 25
   EvoCount: 0
   HpBar: {fileID: 647142416}
   EvolutionBar: {fileID: 2108000479}
@@ -1636,16 +1636,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0c7f3dea46507647952f64afcd0c915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerID: 0
-  attackKey: 304
-  evolutionKey: 113
-  maxHp: 10
-  hp: 10
-  addEvoHp: 10
-  attackPower: 1
-  addEvoattackPower: 2
+  playerID: 1
+  attackKey: 115
+  evolutionKey: 100
+  maxHp: 100
+  hp: 100
+  addEvoHp: 50
+  attackPower: 10
+  addEvoattackPower: 5
   evolutionGauge: 0
-  maxEvolutionGauge: 20
+  maxEvolutionGauge: 25
   EvoCount: 0
   HpBar: {fileID: 1511689187}
   EvolutionBar: {fileID: 261066132}

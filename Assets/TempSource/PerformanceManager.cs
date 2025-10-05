@@ -19,7 +19,7 @@ public class PerformanceManager : MonoBehaviour
     private Vector3 SaveLoc2;
     private float distance = 0f;
 
-    private void Start()
+    public void InitLoc()
     {
         SaveLoc1 = p1Trans.position;
         SaveLoc2 = p2Trans.position;
