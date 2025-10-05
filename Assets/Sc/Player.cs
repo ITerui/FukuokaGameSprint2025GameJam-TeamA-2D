@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,7 +15,9 @@ public class Player : MonoBehaviour
 
     public int maxHp = 10;
     public int hp = 10;          // �̗�
+    public int addEvoHp = 10;          // �̗�
     public int attackPower = 2;  // �U����
+    public int addEvoattackPower = 2;  // �U����
     public int evolutionGauge = 0; // �i���Q�[�W
     public int maxEvolutionGauge = 20;  // �Q�[�W�̍ő�l�i�����j
     public int EvoCount = 0;
@@ -25,6 +28,8 @@ public class Player : MonoBehaviour
 
     public CharacterSpriteManager ImageManager;
     public Image CharacterImage;
+    
+    public RectTransform targetRectTransform;
 
     public void Start()
     {
@@ -62,25 +67,25 @@ public class Player : MonoBehaviour
     {
         if (evolutionGauge >= maxEvolutionGauge)
         {
-            int a = 0;
-            // �i������
+            EvoCount++;
+            ChangeIdleImage(EvoCount);
+
+            targetRectTransform.localScale = new Vector2(1f + (0.2f * EvoCount), 1f + (0.3f * EvoCount));
+
             evolutionGauge = 0;
-            hp += 3;          // �񕜗ʁi�����j
+
+            hp += addEvoHp;
             if (hp > maxHp) hp = maxHp;
-            attackPower += 2 + a; // �U���̓A�b�v
-            a += 1;
+
+            attackPower += addEvoattackPower;
 
             UpdateBar();
             UpdateUIBar();
-
-            EvoCount++;
-            ChangeIdleImage(EvoCount);
 
             Debug.Log($"Player{playerID} ���i���I HP: {hp}, �U����: {attackPower}");
         }
         else
         {
-            Debug.Log($"Player{playerID} �͐i���ł��Ȃ��i�Q�[�W {evolutionGauge}/{maxEvolution}�j");
             Debug.Log($"Player{playerID} �͐i���ł��Ȃ��i�Q�[�W {evolutionGauge}/{maxEvolutionGauge}�j");
         }
     }

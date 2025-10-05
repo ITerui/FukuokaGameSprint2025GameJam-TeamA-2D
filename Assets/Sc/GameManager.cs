@@ -36,8 +36,9 @@ public class GameManager : MonoBehaviour
     private bool roundActive = false;
     private bool waitingForInput = false;
 
-
     private AudioSource audioSource;
+    [SerializeField]
+    public PerformanceManager AttackPerforamanceManager;
 
     void Start()
     {
@@ -89,6 +90,8 @@ public class GameManager : MonoBehaviour
     public void OnPlayerAttack(Player player)
     {
         CancelInvoke(nameof(OnDraw));
+        float distance = player.playerID == 1 ? 1f : -1f;
+        AttackPerforamanceManager.OnAttackPerformance(distance);
 
         roundActive = false;
         waitingForInput = false;
@@ -164,6 +167,7 @@ public class GameManager : MonoBehaviour
     // --- ラウンド開始 ---
     void StartNextRound()
     {
+        AttackPerforamanceManager.EndAttackPerformance();
         roundActive = true;
         waitingForInput = false;
         if (markImage != null) markImage.gameObject.SetActive(false);
