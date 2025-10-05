@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Cat_03_Lost
-  m_Shader: {fileID: 4800000, guid: 82ba33b7ef0bc5f448032784a4079b86, type: 3}
+  m_Shader: {fileID: 4800000, guid: 815b50197ad6ded40b8b4c342cb67863, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -33,10 +33,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Amplitude: 0.05
+    - _Amplitude: 0.051
     - _Emission: 2
-    - _Frequency: 10
-    - _Speed: 2
-    - _WaveSpeed: 1
+    - _Frequency: 13.69
+    - _Speed: 1.77
+    - _WaveSpeed: 2.81
     m_Colors: []
   m_BuildTextureStacks: []
