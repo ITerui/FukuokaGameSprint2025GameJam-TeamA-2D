@@ -18,6 +18,8 @@ public class Player : MonoBehaviour
     public int evolutionGauge = 0; // �i���Q�[�W
     public int maxEvolution;  // �Q�[�W�̍ő�l�i�����j
 
+    private bool attackPowerAdjust = false;
+
     [Header("UI")]
     [SerializeField] private BarGauge HpBar = null; // �{���͂����Őݒ肷��̗ǂ��Ȃ��B�L�������₵���肵���Ƃ��ɍ���B�g�������Ȃ��B
     [SerializeField] private BarGauge EvolutionBar = null; // �{���͂����Őݒ肷��̗ǂ��Ȃ��B�L�������₵���肵���Ƃ��ɍ���B�g�������Ȃ��B
@@ -56,10 +58,17 @@ public class Player : MonoBehaviour
             int a = 0;
             // �i������
             evolutionGauge = 0;
-            hp += 3;          // �񕜗ʁi�����j
+            hp += 10;          // �񕜗ʁi�����j
+            if(hp>maxHp) hp = maxHp;
             if (hp > maxHp) hp = maxHp;
             attackPower += 2 + a; // �U���̓A�b�v
-            a += 1;
+            if(attackPowerAdjust)
+            {
+                a -= 1;
+            }
+            a += 2;
+            attackPowerAdjust = true;
+
 
             UpdateBar();
             UpdateUIBar();
