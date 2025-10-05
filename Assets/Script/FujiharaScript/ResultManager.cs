@@ -1,26 +1,52 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class ResultManager : MonoBehaviour
 {
-    [SerializeField] private Button[] buttons;
-    [SerializeField] int selectedIndex;
+    [System.Serializable]
+    public class ButtonImageSet
+    {
+        public Button button;
+        public Sprite selectedSprite;
+        public Sprite unselectedSprite;
+    }
+
+    [SerializeField] private ButtonImageSet[] buttonImageSets;
     [SerializeField] private FadeManager fadeManager;
+
+    [SerializeField] private Image dogImage;  // 犬の進化イラスト
+    [SerializeField] private Image catImage;  // 猫の進化イラスト
+
+    [SerializeField] private Sprite[] dogWinSprites;  // 犬の勝ちスプライト
+    [SerializeField] private Sprite[] catWinSprites;  // 猫の勝ちスプライト
+    [SerializeField] private Sprite[] dogLoseSprites;  // 犬の負けスプライト
+    [SerializeField] private Sprite[] catLoseSprites;  // 猫の負けスプライト
+
+    // ゲームシーンから渡された進化段階
+    public static int dogEvolutionStage = 0;
+    public static int catEvolutionStage = 0;
+    private int battleResult = 0;
 
     private Color unselectedColor = new Color(0.3f, 0.3f, 0.3f); // 暗めのグレー
     private Color defaultNormalColor;
 
+    private int selectedIndex = 0;
+
     // Start is called before the first frame update
     void Start()
     {
-        defaultNormalColor = buttons[0].colors.normalColor;
-        UpdateButtonColors();
+        // PlayerPrefsから進化段階と勝敗情報を取得
+        dogEvolutionStage = PlayerPrefs.GetInt("DogEvolutionLevel", 1); // デフォルト値は1
+        catEvolutionStage = PlayerPrefs.GetInt("CatEvolutionLevel", 1); // デフォルト値は1
 
-        SelectButton(selectedIndex);
+        battleResult = PlayerPrefs.GetInt("BattleResult", 0); // デフォルト値は0（引き分け）
+
+        // 画像の更新処理
+        UpdateDogCatImages();
+
+        UpdateButtonImages();
+        SelectButton(0);
     }
 
     // Update is called once per frame
@@ -28,44 +54,96 @@ public class ResultManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            selectedIndex = (selectedIndex + 1) % buttons.Length;
-            UpdateButtonColors();
+            selectedIndex = (selectedIndex + 1) % buttonImageSets.Length;
+            UpdateButtonImages();
             SelectButton(selectedIndex);
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            selectedIndex = (selectedIndex - 1 + buttons.Length) % buttons.Length;
-            UpdateButtonColors();
+            selectedIndex = (selectedIndex - 1 + buttonImageSets.Length) % buttonImageSets.Length;
+            UpdateButtonImages();
             SelectButton(selectedIndex);
         }
         else if (Input.GetKeyDown(KeyCode.Return))
         {
-            buttons[selectedIndex].onClick.Invoke();
+            buttonImageSets[selectedIndex].button.onClick.Invoke();
         }
     }
 
     void SelectButton(int index)
     {
-        EventSystem.current.SetSelectedGameObject(buttons[index].gameObject);
+        EventSystem.current.SetSelectedGameObject(buttonImageSets[index].button.gameObject);
     }
 
-    void UpdateButtonColors()
+    void UpdateButtonImages()
     {
-        for (int i = 0; i < buttons.Length; i++)
+        for (int i = 0; i < buttonImageSets.Length; i++)
         {
-            var colors = buttons[i].colors;
-
+            Image buttonImage = buttonImageSets[i].button.GetComponent<Image>();
             if (i == selectedIndex)
             {
-                colors.normalColor = defaultNormalColor;
+                buttonImage.sprite = buttonImageSets[i].selectedSprite;
             }
             else
             {
-                colors.normalColor = unselectedColor;
+                buttonImage.sprite = buttonImageSets[i].unselectedSprite;
             }
-
-            buttons[i].colors = colors;
         }
+    }
+
+    private void UpdateDogCatImages()
+    {
+        SetImageSize(dogImage, dogEvolutionStage);
+        SetImageSize(catImage, catEvolutionStage);
+
+        // 結果に応じて犬と猫の進化段階を反映
+        if (battleResult == 1)  // 犬勝ち
+        {
+            dogImage.sprite = dogWinSprites[dogEvolutionStage - 1];
+            catImage.sprite = catLoseSprites[catEvolutionStage - 1];
+        }
+        else if (battleResult == -1)  // 猫勝ち
+        {
+            dogImage.sprite = dogLoseSprites[dogEvolutionStage - 1];
+            catImage.sprite = catWinSprites[catEvolutionStage - 1];
+        }
+        else  // 引き分け
+        {
+            dogImage.sprite = dogWinSprites[dogEvolutionStage - 1];
+            catImage.sprite = catWinSprites[catEvolutionStage - 1];
+        }
+    }
+
+    private void SetImageSize(Image image, int evolutionStage)
+    {
+        // サイズは進化段階に基づいて設定（例）
+        // 進化段階に応じて、サイズを調整。ここでは単純に段階ごとに倍率を変えます。
+        float sizeMultiplierX = 1f;
+        float sizeMultiplierY = 1f;
+
+        switch (evolutionStage)
+        {
+            case 1:
+                sizeMultiplierX = 1.25f;  // 初期サイズ
+                sizeMultiplierY = 2f;  // 初期サイズ
+                break;
+            case 2:
+                sizeMultiplierX = 1.875f;  // 2段階目は1.5倍
+                sizeMultiplierY = 3f;  // 2段階目は1.5倍
+                break;
+            case 3:
+                sizeMultiplierX = 2.5f;  // 3段階目は2倍
+                sizeMultiplierY = 4f;  // 3段階目は2倍
+                break;
+            default:
+                sizeMultiplierX = 1f;  // デフォルトは1倍
+                sizeMultiplierY = 1f;  // デフォルトは1倍
+                break;
+        }
+
+        // RectTransformのサイズを設定
+        RectTransform rectTransform = image.GetComponent<RectTransform>();
+        rectTransform.sizeDelta = new Vector2(100f * sizeMultiplierX, 100f * sizeMultiplierY);  // 100は基本サイズ（調整可能）
     }
 
     public void ReStartGame()
