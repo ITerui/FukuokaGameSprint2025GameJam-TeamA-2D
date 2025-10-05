@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,85 +6,97 @@ public class Player : MonoBehaviour
 {
     public int playerID; // 1 or 2
 
-    [Header("ƒL[İ’è")]
-    public KeyCode attackKey;    // UŒ‚ƒL[
-    public KeyCode evolutionKey; // i‰»ƒL[
-    public KeyCode foulKey;      // ƒtƒ‰ƒCƒ“ƒOƒL[
+    [Header("ï¿½Lï¿½[ï¿½İ’ï¿½")]
+    public KeyCode attackKey;    // ï¿½Uï¿½ï¿½ï¿½pï¿½Lï¿½[
+    public KeyCode evolutionKey; // ï¿½iï¿½ï¿½ï¿½pï¿½Lï¿½[
 
-    [Header("ƒXƒe[ƒ^ƒX")]
-    public int hp = 10;
+    [Header("ï¿½Xï¿½eï¿½[ï¿½^ï¿½X")]
+
     public int maxHp = 10;
-    public int attackPower = 1;
-    public int evolutionGauge = 0;
-    public int maxEvolution = 5;
-    public int evolutionLevel = 0;
-
+    public int hp = 10;          // ï¿½Ì—ï¿½
+    public int attackPower = 2;  // ï¿½Uï¿½ï¿½ï¿½ï¿½
+    public int evolutionGauge = 0; // ï¿½iï¿½ï¿½ï¿½Qï¿½[ï¿½W
+    public int maxEvolution;  // ï¿½Qï¿½[ï¿½Wï¿½ÌÅ‘ï¿½lï¿½
+    private bool Apr = false;
+ã€€
     [Header("UI")]
     public Image hpBarImage;
     public Image evolutionBarImage;
-
-    [Header("i‰»—pUIƒCƒ[ƒW")]
-    public Image characterImage;         // •ÏX‘ÎÛ‚ÌImage
-    public Sprite[] evolutionSprites;    // i‰»’iŠK‚Ì‰æ‘œ”z—ñ
-
-    private void Start()
+    
+    public void Start()
     {
-        UpdateBars();
+        if(HpBar != null)
+        {
+            HpBar.Setup(maxHp, maxHp);
+        }
+
+        if(EvolutionBar != null)
+        {
+            EvolutionBar.Setup(maxEvolution, 0);
+        }
     }
 
-    // ’Êíƒ_ƒ[ƒWiƒQ[ƒW‘‰Á‚ ‚èj
     public void TakeDamage(int damage)
     {
         hp -= damage;
+
+        // ï¿½_ï¿½ï¿½ï¿½[ï¿½Wï¿½Ê‚É‰ï¿½ï¿½ï¿½ï¿½Äiï¿½ï¿½ï¿½Qï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½Z
         evolutionGauge += damage;
+        Debug.Log($"[DEBUG] HPï¿½Xï¿½V: {hp}/{maxHp}");
         if (evolutionGauge > maxEvolution) evolutionGauge = maxEvolution;
-        UpdateBars();
-        Debug.Log($"Player{playerID} ƒ_ƒ[ƒW: {damage} HP: {hp}/{maxHp} ƒQ[ƒW: {evolutionGauge}/{maxEvolution}");
+
+        UpdateBar();
+        UpdateUIBar();
+
+        Debug.Log($"Player{playerID} ï¿½ï¿½ {damage} ï¿½_ï¿½ï¿½ï¿½[ï¿½Wï¿½ï¿½ó‚¯‚ï¿½ï¿½I HP: {hp}, ï¿½iï¿½ï¿½ï¿½Qï¿½[ï¿½W: {evolutionGauge}/{maxEvolution}");
     }
 
-    // ƒtƒ‰ƒCƒ“ƒOƒ_ƒ[ƒWiƒQ[ƒW‚Í‘‚¦‚È‚¢j
-    public void TakeDamage_NoGauge(int damage)
-    {
-        hp -= damage;
-        UpdateBars();
-        Debug.Log($"Player{playerID} ƒtƒ‰ƒCƒ“ƒOƒyƒiƒ‹ƒeƒB: {damage} ƒ_ƒ[ƒW HP: {hp}/{maxHp}");
-    }
-
-    // i‰»ˆ—
     public void Evolve()
     {
         if (evolutionGauge >= maxEvolution)
         {
+            int a = 0;
+            // ï¿½iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             evolutionGauge = 0;
-            evolutionLevel++;
-            maxHp += 2;
-            hp = maxHp;
-            attackPower += 1;
-
-            UpdateBars();
-
-            // --- ‰æ‘œ‚ğØ‚è‘Ö‚¦‚é ---
-            if (characterImage != null && evolutionSprites.Length > 0)
+            hp += 3;          // ï¿½ñ•œ—Êiï¿½ï¿½ï¿½ï¿½ï¿½Âj
+            if (hp > maxHp) hp = maxHp;
+            if (Apr==true)
             {
-                int index = Mathf.Clamp(evolutionLevel, 0, evolutionSprites.Length - 1);
-                characterImage.sprite = evolutionSprites[index];
-
-                // --- ‘å‚«‚³‚ÆˆÊ’u‚ğ•ÏX ---
-                RectTransform rt = characterImage.rectTransform;
-                rt.localScale = Vector3.one * (1 + 0.2f * evolutionLevel); // ’iŠK“I‚ÉŠg‘å
-                rt.anchoredPosition = new Vector2(0, 10 * evolutionLevel);  // ’iŠK“I‚É­‚µã‚ÉˆÚ“®
+                a -= 1;
             }
+            attackPower += 2 +aï¼›
+            a += 2;
+            Apr = true;
 
-            Debug.Log($"Player{playerID} i‰»! HP: {hp}/{maxHp}, UŒ‚—Í: {attackPower}, i‰»Lv: {evolutionLevel}");
 
-            GameManager gm = FindObjectOfType<GameManager>();
-            if (gm != null) gm.OnPlayerEvolve(this);
+            UpdateBar();
+            UpdateUIBar();
+
+            Debug.Log($"Player{playerID} ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½I HP: {hp}, ï¿½Uï¿½ï¿½ï¿½ï¿½: {attackPower}");
+        }
+        else
+        {
+            Debug.Log($"Player{playerID} ï¿½Íiï¿½ï¿½ï¿½Å‚ï¿½ï¿½È‚ï¿½ï¿½iï¿½Qï¿½[ï¿½W {evolutionGauge}/{maxEvolution}ï¿½j");
         }
     }
 
-    private void UpdateBars()
+    private void UpdateBar()
     {
-        if (hpBarImage != null) hpBarImage.fillAmount = (float)hp / maxHp;
-        if (evolutionBarImage != null) evolutionBarImage.fillAmount = (float)evolutionGauge / maxEvolution;
+        if(hpBarImage != null)
+        {
+            hpBarImage.fillAmount = (float)hp / maxHp;
+        }
+    ï½
+    private void UpdateUIBar()
+    {
+        if (EvolutionBar != null)
+        {
+            evolutionBar.Image.fillAmount = (float)evolutionGauge/maxEvolution;
+        }
+    }
+
+    internal void TakeDamage_NoGauge(int foulDamage)
+    {
+
     }
 }
