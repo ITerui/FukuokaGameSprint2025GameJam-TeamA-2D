@@ -22,6 +22,8 @@ public class Player : MonoBehaviour
     public int maxEvolutionGauge = 20;  // �Q�[�W�̍ő�l�i�����j
     public int EvoCount = 0;
 
+    private bool attackPowerAdjust = false;
+
     [Header("UI")]
     [SerializeField] private BarGauge HpBar = null; // �{���͂����Őݒ肷��̗ǂ��Ȃ��B�L�������₵���肵���Ƃ��ɍ���B�g�������Ȃ��B
     [SerializeField] private BarGauge EvolutionBar = null; // �{���͂����Őݒ肷��̗ǂ��Ȃ��B�L�������₵���肵���Ƃ��ɍ���B�g�������Ȃ��B

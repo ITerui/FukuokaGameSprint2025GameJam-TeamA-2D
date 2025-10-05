@@ -12,6 +12,9 @@ public class ResultManager : MonoBehaviour
         public Sprite unselectedSprite;
     }
 
+    [SerializeField] private AudioClip buttonSE;
+    private AudioSource audioSource;
+
     [SerializeField] private ButtonImageSet[] buttonImageSets;
     [SerializeField] private FadeManager fadeManager;
 
@@ -36,6 +39,8 @@ public class ResultManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+
         // PlayerPrefsから進化段階と勝敗情報を取得
         dogEvolutionStage = PlayerPrefs.GetInt("DogEvolutionLevel", 1); // デフォルト値は1
         catEvolutionStage = PlayerPrefs.GetInt("CatEvolutionLevel", 1); // デフォルト値は1
@@ -66,6 +71,7 @@ public class ResultManager : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Return))
         {
+            audioSource.PlayOneShot(buttonSE);
             buttonImageSets[selectedIndex].button.onClick.Invoke();
         }
     }

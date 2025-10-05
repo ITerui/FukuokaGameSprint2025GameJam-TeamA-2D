@@ -893,7 +893,7 @@ PrefabInstance:
     - target: {fileID: 910796664737258669, guid: a497e56db38e4dc4e9d56be15dbbc602, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 4e71b8324def8364e85cbefa31926da5, type: 3}
+      objectReference: {fileID: 21300000, guid: 756ca5588269d6249bbc37bb58ea8aaa, type: 3}
     - target: {fileID: 1173633380835142769, guid: a497e56db38e4dc4e9d56be15dbbc602, type: 3}
       propertyPath: m_Name
       value: EvolutionGauge_02
@@ -1636,14 +1636,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0c7f3dea46507647952f64afcd0c915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerID: 1
-  attackKey: 115
-  evolutionKey: 100
-  maxHp: 100
-  hp: 100
-  addEvoHp: 30
-  attackPower: 10
-  addEvoattackPower: 5
+  playerID: 0
+  attackKey: 304
+  evolutionKey: 113
+  maxHp: 10
+  hp: 10
+  attackPower: 1
   evolutionGauge: 0
   maxEvolutionGauge: 20
   EvoCount: 0
@@ -1821,9 +1819,6 @@ MonoBehaviour:
   resultScene_P2Win: 
   resultScene_P1OverEvolution: 
   resultScene_P2OverEvolution: 
-  bgmClip: {fileID: 0}
-  ReturnIdleTime: 1
-  AttackPerforamanceManager: {fileID: 1836486281}
 --- !u!4 &1836486280
 Transform:
   m_ObjectHideFlags: 0
@@ -1913,7 +1908,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7cb68b62e220a824193521950b55f9e0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 704ac8c09ce1340468dc71abdcc6699d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2062,7 +2057,7 @@ PrefabInstance:
     - target: {fileID: 910796664737258669, guid: a497e56db38e4dc4e9d56be15dbbc602, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 368df5f19ab8efd45b5b3a89714500b9, type: 3}
+      objectReference: {fileID: 21300000, guid: ed611dee731f611458e234f3db2baf43, type: 3}
     - target: {fileID: 1173633380835142769, guid: a497e56db38e4dc4e9d56be15dbbc602, type: 3}
       propertyPath: m_Name
       value: EvolutionGauge_01
@@ -2167,13 +2162,20 @@ PrefabInstance:
       propertyPath: m_PresetInfoIsWorld
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5646896911041663063, guid: a497e56db38e4dc4e9d56be15dbbc602, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6348242217989151289, guid: a497e56db38e4dc4e9d56be15dbbc602, type: 3}
       propertyPath: CurrentValue
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 3052615565934249443, guid: a497e56db38e4dc4e9d56be15dbbc602, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 1326009133}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a497e56db38e4dc4e9d56be15dbbc602, type: 3}
 --- !u!1001 &6713654043617023240
