@@ -919,7 +919,7 @@ PrefabInstance:
     - target: {fileID: 910796664737258669, guid: a497e56db38e4dc4e9d56be15dbbc602, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 4e71b8324def8364e85cbefa31926da5, type: 3}
+      objectReference: {fileID: 21300000, guid: 756ca5588269d6249bbc37bb58ea8aaa, type: 3}
     - target: {fileID: 1173633380835142769, guid: a497e56db38e4dc4e9d56be15dbbc602, type: 3}
       propertyPath: m_Name
       value: EvolutionGauge_02
@@ -1164,7 +1164,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1192154540
 Transform:
   m_ObjectHideFlags: 0
@@ -1337,9 +1337,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0c7f3dea46507647952f64afcd0c915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerID: 0
-  attackKey: 303
-  evolutionKey: 112
+  playerID: 2
+  attackKey: 106
+  evolutionKey: 107
   maxHp: 10
   hp: 10
   attackPower: 1
@@ -1347,6 +1347,81 @@ MonoBehaviour:
   maxEvolution: 0
   HpBar: {fileID: 647142416}
   EvolutionBar: {fileID: 2108000479}
+--- !u!1 &1326009132
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1326009133}
+  - component: {fileID: 1326009135}
+  - component: {fileID: 1326009134}
+  m_Layer: 5
+  m_Name: ButtonGuide (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1326009133
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1326009132}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 261066131}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 1, y: 130}
+  m_SizeDelta: {x: 160, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1326009134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1326009132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: ed611dee731f611458e234f3db2baf43, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1326009135
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1326009132}
+  m_CullTransparentMesh: 1
 --- !u!1 &1332872549
 GameObject:
   m_ObjectHideFlags: 0
@@ -1629,9 +1704,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0c7f3dea46507647952f64afcd0c915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerID: 0
-  attackKey: 304
-  evolutionKey: 113
+  playerID: 1
+  attackKey: 115
+  evolutionKey: 100
   maxHp: 10
   hp: 10
   attackPower: 1
@@ -1780,6 +1855,7 @@ MonoBehaviour:
   resultScene_P2Win: 
   resultScene_P1OverEvolution: 
   resultScene_P2OverEvolution: 
+  bgmClip: {fileID: 8300000, guid: cbac8213e1918c4428d829caaf1078db, type: 3}
 --- !u!4 &1836486280
 Transform:
   m_ObjectHideFlags: 0
@@ -1852,7 +1928,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7cb68b62e220a824193521950b55f9e0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 704ac8c09ce1340468dc71abdcc6699d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2002,7 +2078,7 @@ PrefabInstance:
     - target: {fileID: 910796664737258669, guid: a497e56db38e4dc4e9d56be15dbbc602, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 368df5f19ab8efd45b5b3a89714500b9, type: 3}
+      objectReference: {fileID: 21300000, guid: ed611dee731f611458e234f3db2baf43, type: 3}
     - target: {fileID: 1173633380835142769, guid: a497e56db38e4dc4e9d56be15dbbc602, type: 3}
       propertyPath: m_Name
       value: EvolutionGauge_01
@@ -2107,13 +2183,20 @@ PrefabInstance:
       propertyPath: m_PresetInfoIsWorld
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5646896911041663063, guid: a497e56db38e4dc4e9d56be15dbbc602, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6348242217989151289, guid: a497e56db38e4dc4e9d56be15dbbc602, type: 3}
       propertyPath: CurrentValue
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 3052615565934249443, guid: a497e56db38e4dc4e9d56be15dbbc602, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 1326009133}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a497e56db38e4dc4e9d56be15dbbc602, type: 3}
 --- !u!1001 &6713654043617023240
