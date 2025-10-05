@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,19 +13,22 @@ public class GameManager : MonoBehaviour
     public Image markImage;
 
     [Header("フライング設定")]
-    public int foulDamage = 1;
     public float nextMarkDelayAfterFoul = 1f;
+    public float nextMinMarkWaitTime = 1f;
+    public float nextMaxMarkWaitTime = 5f;
+    public float PerformanceTime = 2f;
+    public float DrawTime = 2f;
 
     [Header("進化上限")]
     public int maxEvolutionCount = 3;
-    private int p1EvolutionCount = 0;
-    private int p2EvolutionCount = 0;
 
     [Header("リザルトシーン")]
     public string resultScene_P1Win;
     public string resultScene_P2Win;
     public string resultScene_P1OverEvolution;
     public string resultScene_P2OverEvolution;
+
+    public float ReturnIdleTime = 30.0f;
 
     private bool roundActive = false;
     private bool waitingForInput = false;
@@ -49,7 +53,9 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(player1.evolutionKey))
         {
             if (!waitingForInput) // マーク非表示時のみ進化
-                player1.Evolve();
+            {
+                OnPlayerEvolve(player1);
+            }
         }
 
         // --- Player2 ---
@@ -62,16 +68,22 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(player2.evolutionKey))
         {
             if (!waitingForInput) // マーク非表示時のみ進化
-                player2.Evolve();
+            {
+                OnPlayerEvolve(player2);
+            }
         }
     }
 
     // --- 攻撃 ---
     public void OnPlayerAttack(Player player)
     {
+        CancelInvoke(nameof(OnDraw));
+
         roundActive = false;
         waitingForInput = false;
         if (markImage != null) markImage.gameObject.SetActive(false);
+
+        player.OnAttack();
 
         Player opponent = (player.playerID == 1) ? player2 : player1;
         if (opponent != null)
@@ -80,43 +92,62 @@ public class GameManager : MonoBehaviour
             Debug.Log($"Player{player.playerID} 攻撃! Player{opponent.playerID} に {player.attackPower} ダメージ");
         }
 
-        Invoke(nameof(StartNextRound), 1f);
+        Invoke(nameof(StartNextRound), PerformanceTime);
     }
 
     // --- フライング ---
     public void OnPlayerFoul(Player player)
     {
+        CancelInvoke(nameof(ShowMark));
+        CancelInvoke(nameof(OnDraw));
+
         roundActive = false;
         waitingForInput = false;
 
+        float foulDamage = player.attackPower * 0.5f;
+
         Debug.Log($"Player{player.playerID} フライング! ペナルティ {foulDamage} ダメージ");
-        player.TakeDamage_NoGauge(foulDamage);
+        player.TakeDamage_NoGauge((int)foulDamage);
 
         if (markImage != null) markImage.gameObject.SetActive(false);
-        Invoke(nameof(StartNextRound), nextMarkDelayAfterFoul);
+        Invoke(nameof(StartNextRound), PerformanceTime);
     }
 
     // --- 進化通知 ---
     public void OnPlayerEvolve(Player player)
     {
+        CancelInvoke(nameof(ShowMark));
+        CancelInvoke(nameof(OnDraw));
+
+        roundActive = false;
+        waitingForInput = false;
+
         if (player.playerID == 1)
         {
-            p1EvolutionCount++;
-            if (p1EvolutionCount > maxEvolutionCount)
+            if (player.EvoCount >= maxEvolutionCount)
             {
                 Debug.Log("Player1 進化しすぎ → 敗北");
                 SceneManager.LoadScene(resultScene_P2OverEvolution);
             }
+            else
+            {
+                player.Evolve();
+            }
         }
         else if (player.playerID == 2)
         {
-            p2EvolutionCount++;
-            if (p2EvolutionCount > maxEvolutionCount)
+            if (player.EvoCount >= maxEvolutionCount)
             {
                 Debug.Log("Player2 進化しすぎ → 敗北");
                 SceneManager.LoadScene(resultScene_P1OverEvolution);
             }
+            else
+            {
+                player.Evolve();
+            }
         }
+
+        Invoke(nameof(StartNextRound), PerformanceTime);
     }
 
     // --- ラウンド開始 ---
@@ -126,8 +157,11 @@ public class GameManager : MonoBehaviour
         waitingForInput = false;
         if (markImage != null) markImage.gameObject.SetActive(false);
 
-        float delay = Random.Range(1f, 3f);
+        float delay = Random.Range(nextMinMarkWaitTime, nextMaxMarkWaitTime);
         Invoke(nameof(ShowMark), delay);
+
+        player1.ReturIdle();
+        player2.ReturIdle();
     }
 
     void ShowMark()
@@ -135,5 +169,19 @@ public class GameManager : MonoBehaviour
         if (!roundActive) return;
         if (markImage != null) markImage.gameObject.SetActive(true);
         waitingForInput = true;
+
+        Invoke(nameof(OnDraw), DrawTime);
+    }
+
+    void OnDraw()
+    {
+        roundActive = false;
+        waitingForInput = false;
+        if (markImage != null) markImage.gameObject.SetActive(false);
+
+        player1.OnHit();
+        player2.OnHit();
+
+        Invoke(nameof(StartNextRound), PerformanceTime);
     }
 }
