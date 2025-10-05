@@ -1641,7 +1641,9 @@ MonoBehaviour:
   evolutionKey: 113
   maxHp: 10
   hp: 10
+  addEvoHp: 10
   attackPower: 1
+  addEvoattackPower: 2
   evolutionGauge: 0
   maxEvolutionGauge: 20
   EvoCount: 0
@@ -1819,6 +1821,9 @@ MonoBehaviour:
   resultScene_P2Win: 
   resultScene_P1OverEvolution: 
   resultScene_P2OverEvolution: 
+  bgmClip: {fileID: 0}
+  ReturnIdleTime: 30
+  AttackPerforamanceManager: {fileID: 1836486281}
 --- !u!4 &1836486280
 Transform:
   m_ObjectHideFlags: 0
@@ -2172,10 +2177,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 3052615565934249443, guid: a497e56db38e4dc4e9d56be15dbbc602, type: 3}
-      insertIndex: 1
-      addedObject: {fileID: 1326009133}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a497e56db38e4dc4e9d56be15dbbc602, type: 3}
 --- !u!1001 &6713654043617023240
