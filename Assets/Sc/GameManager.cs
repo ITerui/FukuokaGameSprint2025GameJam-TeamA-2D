@@ -141,7 +141,11 @@ public class GameManager : MonoBehaviour
         {
             if (player.EvoCount >= maxEvolutionCount)
             {
-                Debug.Log("Player1 êiâªÇµÇ∑Ç¨ Å® îsñk");
+                Debug.Log("Player1 êiâªÇµÇ∑Ç¨ Å® îsñk");PlayerPrefs.GetInt("BattleResult", 0);
+                PlayerPrefs.SetInt("BattleResult", -1);
+                PlayerPrefs.SetInt("DogEvolutionLevel", player1.EvoCount);
+                PlayerPrefs.SetInt("CatEvolutionLevel", player2.EvoCount);
+
                 SceneManager.LoadScene(resultScene_P2OverEvolution);
             }
             else
@@ -154,6 +158,9 @@ public class GameManager : MonoBehaviour
             if (player.EvoCount >= maxEvolutionCount)
             {
                 Debug.Log("Player2 êiâªÇµÇ∑Ç¨ Å® îsñk");
+                PlayerPrefs.SetInt("BattleResult", 1);
+                PlayerPrefs.SetInt("DogEvolutionLevel", player1.EvoCount);
+                PlayerPrefs.SetInt("CatEvolutionLevel", player2.EvoCount);
                 SceneManager.LoadScene(resultScene_P1OverEvolution);
             }
             else
@@ -168,6 +175,21 @@ public class GameManager : MonoBehaviour
     // --- ÉâÉEÉìÉhäJén ---
     void StartNextRound()
     {
+        if (player1.hp <= 0)
+        {
+            PlayerPrefs.SetInt("BattleResult", -1);
+            PlayerPrefs.SetInt("DogEvolutionLevel", player1.EvoCount);
+            PlayerPrefs.SetInt("CatEvolutionLevel", player2.EvoCount);
+            SceneManager.LoadScene(resultScene_P2Win);
+        }
+        else if (player2.hp <= 0)
+        {
+            PlayerPrefs.SetInt("BattleResult", 1);
+            PlayerPrefs.SetInt("DogEvolutionLevel", player1.EvoCount);
+            PlayerPrefs.SetInt("CatEvolutionLevel", player2.EvoCount);
+            SceneManager.LoadScene(resultScene_P1Win);
+        }
+
         AttackPerforamanceManager.EndAttackPerformance();
         roundActive = true;
         waitingForInput = false;

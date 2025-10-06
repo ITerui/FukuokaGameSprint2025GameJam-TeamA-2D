@@ -33,16 +33,11 @@ public class BarGauge : MonoBehaviour
 
     public void Start()
     {
-        DekasinkaEf.SetActive(false);
-    }
-    public void Update()
-    {
-        if (!isEffectRunning && CurrentValue == MaxValue)
+        if (DekasinkaEf != null)
         {
-            StartCoroutine(DekaEf());
+            DekasinkaEf.SetActive(false);
         }
     }
-
     
    IEnumerator DekaEf()
     {
@@ -50,7 +45,7 @@ public class BarGauge : MonoBehaviour
         {
             isEffectRunning = true;
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 3; i++)
             {
                 DekasinkaEf.SetActive(true);
                 yield return new WaitForSeconds(0.5f);
@@ -86,6 +81,17 @@ public class BarGauge : MonoBehaviour
         if (BarGaugeImage != null)
         {
             BarGaugeImage.fillAmount = CurrentValue / MaxValue;
+
+            if (!isEffectRunning)
+            {
+                if (DekasinkaEf != null)
+                {
+                    if (CurrentValue >= MaxValue)
+                    {
+                        StartCoroutine(DekaEf());
+                    }
+                }
+            }
         }
     }
 

@@ -105,18 +105,18 @@ public class ResultManager : MonoBehaviour
         // Œ‹‰Ê‚É‰‚¶‚ÄŒ¢‚Æ”L‚Ìi‰»’iŠK‚ğ”½‰f
         if (battleResult == 1)  // Œ¢Ÿ‚¿
         {
-            dogImage.sprite = dogWinSprites[dogEvolutionStage - 1];
-            catImage.sprite = catLoseSprites[catEvolutionStage - 1];
+            dogImage.sprite = dogWinSprites[dogEvolutionStage];
+            catImage.sprite = catLoseSprites[catEvolutionStage];
         }
         else if (battleResult == -1)  // ”LŸ‚¿
         {
-            dogImage.sprite = dogLoseSprites[dogEvolutionStage - 1];
-            catImage.sprite = catWinSprites[catEvolutionStage - 1];
+            dogImage.sprite = dogLoseSprites[dogEvolutionStage];
+            catImage.sprite = catWinSprites[catEvolutionStage];
         }
         else  // ˆø‚«•ª‚¯
         {
-            dogImage.sprite = dogWinSprites[dogEvolutionStage - 1];
-            catImage.sprite = catWinSprites[catEvolutionStage - 1];
+            dogImage.sprite = dogWinSprites[dogEvolutionStage];
+            catImage.sprite = catWinSprites[catEvolutionStage];
         }
     }
 
@@ -154,11 +154,11 @@ public class ResultManager : MonoBehaviour
 
     public void ReStartGame()
     {
-        fadeManager.FadeToScene("Test GameScene");
+        fadeManager.FadeToScene("MainGameScene");
     }
 
     public void GoTitle()
     {
-        fadeManager.FadeToScene("Test TitleScene");
+        fadeManager.FadeToScene("TitleScene");
     }
 }

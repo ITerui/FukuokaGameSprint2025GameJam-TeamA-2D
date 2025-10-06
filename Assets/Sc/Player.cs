@@ -67,6 +67,8 @@ public class Player : MonoBehaviour
 
     public void Evolve()
     {
+        if (EvoCount >= 2) return;
+
         if (evolutionGauge >= maxEvolutionGauge)
         {
             EvoCount++;
